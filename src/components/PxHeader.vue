@@ -20,8 +20,7 @@ import PxIcon from '@/components/PxIcon.vue'
 export default {
   name: "PxHeader",
   components : {
-      PxIcon
+    PxIcon
   }
-    
 }
 </script>
