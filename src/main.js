@@ -27,7 +27,7 @@ import '@/assets/css/tailwind.css'
 import router from "@/router"
 import { createRouter, createWebHashHistory} from 'vue-router';
 import routes from './router';
-
+//import { dollarFilter, percentFilter } from '@/filters';
 const myVue = createApp(App)
 
 const route = createRouter({
@@ -35,6 +35,8 @@ const route = createRouter({
     routes,
 })
 
+/* myVue.filter('dollar', dollarFilter)
+myVue.filter('percent', percentFilter) */
 myVue.use(route)
 myVue.use(router)
 myVue.mount("#app");

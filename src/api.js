@@ -21,7 +21,7 @@ function getAssets() {
         mode: "cors",
         method: "GET",
         headers: {
-        Accept: "application/json",
+            Accept: "application/json",
         },
    })
    .then(res => res.json())

@@ -24,9 +24,11 @@
           <b># {{ a.rank }}</b>
         </td>
         <td>{{ a.name }}</td>
-        <td>{{ a.priceUsd }}</td>
+        <td>{{ a.priceUsd  }}</td>
         <td>{{ a.marketCapUsd }}</td>
-        <td>{{ a.changePercent24Hr }}</td>
+        <td :class="((parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2) < 0 ? 'text-red-600':'text-green-600' ">
+          {{(( parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2)}} %
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
@@ -34,6 +36,7 @@
 </template>
 
 <script>
+//import filters from '@/filters'
 export default {
   name: 'PxAssetsTable',
   props: {
