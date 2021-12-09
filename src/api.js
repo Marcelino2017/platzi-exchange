@@ -32,9 +32,9 @@ function getAsset(coin) {
     return fetch(`${url}/assets/${coin}`)
       .then(res => res.json())
       .then(res => res.data)
-  }
+}
 
-  function getAssetHistory(coin) {
+function getAssetHistory(coin) {
     const now = new Date()
     const end = now.getTime()
     now.setDate(now.getDate() - 1)
@@ -43,9 +43,9 @@ function getAsset(coin) {
     return fetch(
       `${url}/assets/${coin}/history?interval=h1&start=${start}&end=${end}`
     )
-      .then(res => res.json())
-      .then(res => res.data)
-  }
+    .then(res => res.json())
+    .then(res => res.data)
+}
 
 
 export default {
