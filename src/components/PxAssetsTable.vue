@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr 
+      <tr
         v-for="a in assets" :key="a.id"
         class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100">
         <td>
@@ -23,7 +23,16 @@
         <td>
           <b># {{ a.rank }}</b>
         </td>
-        <td>{{ a.name }}</td>
+        <td>
+          <router-link
+            class="hover: underline text-green-600"
+            :to="{ name: 'coin-detail', params: {id: a.id}}">
+            {{ a.name }}
+            <small class="ml-1 text-gray-500">
+              {{ a.symbol }}
+            </small>
+          <router-link>
+        </td>
         <td>{{ a.priceUsd  }}</td>
         <td>{{ a.marketCapUsd }}</td>
         <td :class="((parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2) < 0 ? 'text-red-600':'text-green-600' ">
