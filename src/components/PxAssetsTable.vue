@@ -25,66 +25,82 @@
         </td>
         <td>
           <router-link
-            class="hover: underline text-green-600"
-            :to="{ name: 'coin-detail', params: {id: a.id}}">
+            class="hover:underline text-green-600"
+            :to="{ name: 'coin-detail', params: { id: a.id } }"
+          >
             {{ a.name }}
+            </router-link>
             <small class="ml-1 text-gray-500">
               {{ a.symbol }}
             </small>
-          <router-link>
+ 
         </td>
         <td>{{ a.priceUsd  }}</td>
         <td>{{ a.marketCapUsd }}</td>
-        <td :class="((parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2) < 0 ? 'text-red-600':'text-green-600' ">
+        <!-- ((parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2) < 0 ? 'text-red-600':'text-green-600' -->
+        <td :class="a.changePercent24Hr.includes('-') ?  'text-red-600':'text-green-600'">
           {{(( parseInt(a.changePercent24Hr )/ 100)  * 100).toFixed(2)}} %
         </td>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <px-button @custom-click="goToCoin(a.id)">
+            <span>Detalles</span>
+          </px-button>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
-//import filters from '@/filters'
-export default {
-  name: 'PxAssetsTable',
-  props: {
-    assets: {
-      type: Array,
-      default: () => []
-    }
+  //import filters from '@/filters'
+  import PxButton from '@/components/PxButton'
+
+  export default {
+    name: 'PxAssetsTable',
+    components: { PxButton },
+    props: {
+      assets: {
+        type: Array,
+        default: () => []
+      }
+    },
+
+    methods: {
+      goToCoin (id){
+        this.$router.push({name: 'coin-detail', params: {id}})
+      }
+    },
   }
-}
 </script>
 <style scoped>
-.up::before {
-  content: "👆";
-}
+  .up::before {
+    content: "👆";
+  }
 
-.down::before {
-  content: "👇";
-}
+  .down::before {
+    content: "👇";
+  }
 
-td {
-  padding: 20px 0px;
-  font-size: 0.6rem;
-  text-align: center;
-}
-
-th {
-  padding: 5px;
-  font-size: 0.6rem;
-}
-
-@media (min-width: 640px) {
-  td,
-  th {
-    padding: 20px;
-    font-size: 1rem;
+  td {
+    padding: 20px 0px;
+    font-size: 0.6rem;
+    text-align: center;
   }
 
   th {
-    padding: 12px;
+    padding: 5px;
+    font-size: 0.6rem;
   }
-}
+
+  @media (min-width: 640px) {
+    td,
+    th {
+      padding: 20px;
+      font-size: 1rem;
+    }
+
+    th {
+      padding: 12px;
+    }
+  }
 </style>
