@@ -27,6 +27,9 @@ import '@/assets/css/tailwind.css'
 import router from "@/router"
 import { createRouter, createWebHashHistory} from 'vue-router';
 import routes from './router';
+import {Chart} from 'chart.js'
+import Chartick from  'vue-chartkick'
+import { VueSpinners } from '@saeris/vue-spinners'
 //import { dollarFilter, percentFilter } from '@/filters';
 const myVue = createApp(App)
 
@@ -37,6 +40,8 @@ const route = createRouter({
 
 /* myVue.filter('dollar', dollarFilter)
 myVue.filter('percent', percentFilter) */
+myVue.use(VueSpinners)
+myVue.use(Chartick.use(Chart))
 myVue.use(route)
 myVue.use(router)
 myVue.mount("#app");
